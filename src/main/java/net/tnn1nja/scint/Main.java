@@ -4,30 +4,27 @@ import java.util.Random;
 
 public class Main {
 
-    //Constants
-    Random rand = new Random();
+    // Const/Var
+    static Random rand = new Random();
+    static Reader read = new Reader();
+    static String[] sounds;
     int coeff = 1000;//*60;
-
-    //Variables
-    int minMins;
-    int maxMins;
-    int wait;
+    int minMins = 5;
+    int maxMins = 10;
 
 
-    //Runs at Start Up
+
+    // Runs at Start Up
     public void onStart(){
-        minMins = 5;
-        maxMins = 10;
+        //read.updateSounds();
         newPause();
     }
 
-    //Generates New Pause Thread
+    // Generates New Pause Thread
     public void newPause(){
-        wait = (rand.nextInt(maxMins*coeff) + minMins*coeff);
-
         Thread timer = new Thread(() -> {
             try{
-                Thread.sleep(wait);
+                Thread.sleep(rand.nextInt(maxMins*coeff) + (long) minMins *coeff);
                 playSound();
                 newPause();
 
@@ -39,8 +36,9 @@ public class Main {
         timer.start();
     }
 
-    //Plays a Sound
-    public void playSound(){
+    // Plays a Sound
+    public void playSound() {
         System.out.println("Noise");
     }
+
 }
