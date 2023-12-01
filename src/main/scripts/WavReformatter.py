@@ -1,11 +1,11 @@
 import os
-add = "D:/Coding/Java/Scint/src/main/resources/snd"
+add = "D:/Coding/Java/Scint/src/main/resources/media/data"
 os.chdir(add)
 for filename in os.listdir(add):
-    basename = filename.replace(".mp3","")
-    if filename.endswith(".mp3"):
+    basename = filename.replace(".wav","")
+    if filename.endswith(".wav"):
         os.system("ffmpeg -i " + filename +
-                  " -acodec pcm_u8 -ar 22050 " + basename + ".wav")
+                  " -vn -ar 44100 -ac 2 -b:a 192k " + basename + ".mp3")
         os.system("del /f " + filename)
         
         
