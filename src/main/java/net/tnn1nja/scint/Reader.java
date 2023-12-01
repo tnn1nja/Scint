@@ -7,8 +7,17 @@ import static net.tnn1nja.scint.Init.main;
 
 public class Reader {
 
-    //Gen AppData
+    //Consts
+    File sndFldr = new File(System.getenv("APPDATA") + "\\" + ".scint" + "\\" + "snd");
 
+
+
+    //Gen AppData
+    public void genAppData(){
+        if(!sndFldr.exists()){
+            sndFldr.mkdirs();
+        }
+    }
 
     //Update array
     public void updateSounds() {
@@ -28,4 +37,5 @@ public class Reader {
 
         main.sounds = (String[]) sounds.toArray();
     }
+
 }

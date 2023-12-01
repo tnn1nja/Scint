@@ -15,9 +15,10 @@ public class Main {
 
 
     // Runs at Start Up
-    public void onStart(){
+    public void onStart() {
         //read.updateSounds();
-        newPause();
+        //newPause();
+        read.genAppData();
     }
 
     // Generates New Pause Thread
