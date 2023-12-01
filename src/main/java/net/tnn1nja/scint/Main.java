@@ -6,28 +6,29 @@ public class Main {
 
     // Const/Var
     static Random rand = new Random();
-    static Reader read = new Reader();
-    static String[] sounds;
+    static IOHandler ioHand = new IOHandler();
+    static SoundPlayer player = new SoundPlayer();
     int coeff = 1000;//*60;
     int minMins = 5;
     int maxMins = 10;
 
 
-
     // Runs at Start Up
     public void onStart() {
-        //read.updateSounds();
-        //newPause();
-        read.genAppData();
+        if(!ioHand.isAppData()){
+            ioHand.genAppData();
+        }
+        //newSoundDelay();
+        player.playSound();
     }
 
     // Generates New Pause Thread
-    public void newPause(){
+    public void newSoundDelay(){
         Thread timer = new Thread(() -> {
             try{
                 Thread.sleep(rand.nextInt(maxMins*coeff) + (long) minMins *coeff);
-                playSound();
-                newPause();
+                player.playSound();
+                newSoundDelay();
 
             } catch (InterruptedException e){
                 Thread.currentThread().interrupt();
@@ -35,11 +36,6 @@ public class Main {
         });
 
         timer.start();
-    }
-
-    // Plays a Sound
-    public void playSound() {
-        System.out.println("Noise");
     }
 
 }
