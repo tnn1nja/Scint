@@ -18,7 +18,7 @@ public class Main {
         if(!ioHand.isAppData()){
             ioHand.genAppData();
         }
-        //newSoundDelay();
+        newSoundDelay();
         player.playSound();
     }
 
@@ -27,7 +27,7 @@ public class Main {
         Thread timer = new Thread(() -> {
             try{
                 Thread.sleep(rand.nextInt(maxMins*coeff) + (long) minMins *coeff);
-                //player.playSound();
+                player.playSound();
                 newSoundDelay();
 
             } catch (InterruptedException e){

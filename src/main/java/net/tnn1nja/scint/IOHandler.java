@@ -52,19 +52,22 @@ public class IOHandler {
         ArrayList<String> newSounds = new ArrayList<String>();
 
         for(File f: sndFiles){
-            newSounds.add(f.getName());
+            if(f.getName().endsWith(".mp3")){
+                newSounds.add(f.getName());
+            }
         }
 
         return newSounds;
     }
 
-    //Gets Sound File as Input Stream
-    public InputStream getSound(String soundName) {
-        try {
-            return new FileInputStream(sndFldr + "/media/" + soundName);
-        } catch (IOException e) {
+    //Get Sound Directory
+    public FileInputStream getSound(String soundname){
+        try{
+            return new FileInputStream(sndFldr + "/" + soundname);
+        }catch(IOException e){
             return null;
         }
+
     }
 
 }

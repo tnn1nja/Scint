@@ -1,30 +1,29 @@
 package net.tnn1nja.scint;
 
-import javax.sound.sampled.*;
-import java.io.InputStream;
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import javazoom.jl.player.Player;
 
 import static net.tnn1nja.scint.Main.ioHand;
 import static net.tnn1nja.scint.Main.rand;
 
-public class SoundPlayer implements LineListener {
-
-    boolean playbackCompleted;
-
-    @Override
-    public void update(LineEvent e){
-        if(LineEvent.Type.START == e.getType()){
-            System.out.println("Sound Playing.");
-        }else if(LineEvent.Type.STOP == e.getType()){
-            playbackCompleted = true;
-            System.out.print("Sound Finished.");
-        }
-    }
+public class SoundPlayer {
 
     // Plays a Sound
     public void playSound() {
         ArrayList<String> sounds = ioHand.getSounds();
         String chosen = sounds.get(rand.nextInt(sounds.size()));
-        InputStream is = ioHand.getSound(chosen);
+        FileInputStream soundPath = ioHand.getSound(chosen);
+
+        if(soundPath != null) {
+            try {
+                Player clip = new Player(soundPath);
+            } catch (Exception e) {
+                System.out.println("Sound File Failed to Play, Skipping...");
+            }
+
+        }else{
+            System.out.println("Sound File Not Found, Skipping...");
+        }
     }
 }
