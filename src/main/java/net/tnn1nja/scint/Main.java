@@ -1,7 +1,5 @@
 package net.tnn1nja.scint;
 
-import static net.tnn1nja.scint.Init.ioHand;
-
 public class Main {
 
     // Const/Var
