@@ -136,7 +136,7 @@ public class Window {
             }
         });
 
-        minText.addActionListener(new ActionListener() {
+        maxText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
