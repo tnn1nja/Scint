@@ -8,6 +8,7 @@ public class Main {
     static Random rand = new Random();
     static IOHandler ioHand = new IOHandler();
     static SoundPlayer player = new SoundPlayer();
+    static boolean muted = false;
     int coeff = 1000;//*60;
     int minMins = 5;
     int maxMins = 10;
@@ -19,15 +20,18 @@ public class Main {
             ioHand.genAppData();
         }
         newSoundDelay();
-        player.playSound();
     }
 
     // Generates New Pause Thread
     public void newSoundDelay(){
         Thread timer = new Thread(() -> {
             try{
-                Thread.sleep(rand.nextInt(maxMins*coeff) + (long) minMins *coeff);
-                player.playSound();
+                long delay = rand.nextInt(maxMins*coeff) + (long) minMins *coeff;
+                System.out.println("Next delay: " + delay/1000);
+                Thread.sleep(delay);
+                if(!muted) {
+                    player.playSound();
+                }
                 newSoundDelay();
 
             } catch (InterruptedException e){

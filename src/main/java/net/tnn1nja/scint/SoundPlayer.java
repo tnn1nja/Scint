@@ -18,6 +18,9 @@ public class SoundPlayer {
         if(soundPath != null) {
             try {
                 Player clip = new Player(soundPath);
+                System.out.println("Playing: " + chosen);
+                clip.play();
+                clip.close();
             } catch (Exception e) {
                 System.out.println("Sound File Failed to Play, Skipping...");
             }
