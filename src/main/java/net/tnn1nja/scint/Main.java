@@ -14,7 +14,7 @@ public class Main {
             ioHand.genAppData();
         }*/
 
-        //player.startSounds(5,10);
+        player.startSounds(5,10);
         window.launch(this);
     }
 

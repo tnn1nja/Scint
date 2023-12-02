@@ -77,7 +77,7 @@ public class Window {
         //Create Sliders
             //Minimum Slider
         JSlider minSlider = new JSlider(0, 30, (int) main.player.minMins);
-        JTextField minText = new JTextField(5);
+        JTextField minText = new JTextField(String.valueOf(main.player.minMins), 5);
         minSlider.setBounds(65, 25, 320, 60);
         minText.setBounds(15, 40, 45, 25);
 
@@ -116,7 +116,7 @@ public class Window {
 
             //Maximum Slider
         JSlider maxSlider = new JSlider(0, 30, (int) main.player.maxMins);
-        JTextField maxText = new JTextField(5);
+        JTextField maxText = new JTextField(String.valueOf(main.player.maxMins),5);
         maxSlider.setBounds(65, 100, 320, 60);
         maxText.setBounds(15, 110, 45, 25);
 
