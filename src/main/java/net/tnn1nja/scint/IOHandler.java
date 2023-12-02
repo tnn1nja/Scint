@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class IOHandler {
 
     //Consts
-    File sndFldr = new File(System.getenv("APPDATA") + "\\" + ".scint" + "\\" + "media");
+    static File sndFldr = new File(System.getenv("APPDATA") + "\\" + ".scint" + "\\" + "media");
 
 
     //Check AppData
