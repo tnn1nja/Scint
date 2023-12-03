@@ -12,6 +12,7 @@ public class SoundPlayer {
 
     //Consts + Vars
     Random rand = new Random();
+    Window window;
     boolean muted = false;
     int coeff = 1000;//*60;
     long minMins;
@@ -19,9 +20,10 @@ public class SoundPlayer {
 
 
     //Start
-    public void startSounds(int min, int max){
+    public void startSounds(int min, int max, Window win){
         minMins = min;
         maxMins = max;
+        window = win;
         newSoundDelay();
     }
 
@@ -30,16 +32,23 @@ public class SoundPlayer {
     private void newSoundDelay(){
         Thread timer = new Thread(() -> {
             try{
-                long delay = rand.nextLong((maxMins-minMins)*coeff) + minMins *coeff;
-                System.out.println("Next delay: " + delay/1000 + " minutes.");
+                long delay;
+                if(maxMins == minMins) {
+                    delay = minMins*coeff;
+                }else {
+                    delay = rand.nextLong((maxMins - minMins) * coeff) + minMins * coeff;
+                }
+                window.setDelayLabel((String.valueOf(delay/coeff)));
+                System.out.println("Next delay: " + delay/1000 + " minutes. (" + minMins + "-" + maxMins + ")");
                 Thread.sleep(delay);
                 if(!muted) {
                     playSound();
                 }
                 newSoundDelay();
 
-            } catch (InterruptedException e){
-                Thread.currentThread().interrupt();
+            } catch (Exception e){
+                System.out.println("Failed to Start Delay.");
+                newSoundDelay();
             }
         });
 
@@ -58,6 +67,7 @@ public class SoundPlayer {
                 System.out.println("Playing: " + chosen);
                 clip.play();
                 clip.close();
+                window.setLastLabel(chosen);
             } catch (Exception e) {
                 System.out.println("Sound File Failed to Play, Skipping...");
             }

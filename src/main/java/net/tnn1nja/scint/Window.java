@@ -12,6 +12,16 @@ import java.io.IOException;
 
 public class Window {
 
+    public JLabel delayLabel = new JLabel();
+    public JLabel lastLabel = new JLabel();
+
+    public void setDelayLabel(String label){
+        delayLabel.setText("Current Delay: " + label + " minutes.");
+    }
+
+    public void setLastLabel(String label){
+        lastLabel.setText("Last Played: " + label);
+    }
 
     //Create GUI
     public void launch(Main main) {
@@ -33,10 +43,10 @@ public class Window {
         });
 
         //Labels
-        JLabel delayLabel = new JLabel("Current Delay: ...");
+        setDelayLabel("-");
         delayLabel.setBounds(15, 200, 185, 20);
-        JLabel lastLabel = new JLabel("Last Played: ...");
-        lastLabel.setBounds(225, 200, 180, 20);
+        setLastLabel("...");
+        lastLabel.setBounds(223, 200, 160, 20);
         JLabel minLabel = new JLabel("Minimum Delay (Mins)");
         minLabel.setBounds(10, 5, 135, 25);
         JLabel maxLabel = new JLabel("Maximum Delay (Mins)");
@@ -75,9 +85,12 @@ public class Window {
 
 
         //Create Sliders
-            //Minimum Slider
         JSlider minSlider = new JSlider(0, 30, (int) main.player.minMins);
         JTextField minText = new JTextField(String.valueOf(main.player.minMins), 5);
+        JSlider maxSlider = new JSlider(0, 30, (int) main.player.maxMins);
+        JTextField maxText = new JTextField(String.valueOf(main.player.maxMins),5);
+
+            //Minimum Slider
         minSlider.setBounds(65, 25, 320, 60);
         minText.setBounds(15, 40, 45, 25);
 
@@ -93,6 +106,10 @@ public class Window {
                 main.player.minMins = s.getValue();
                 minText.setText(String.valueOf(minSlider.getValue()));
                 System.out.println("Minimum Minutes Updated: " + main.player.minMins);
+
+                if(maxSlider.getValue() < s.getValue()){
+                    maxSlider.setValue(s.getValue());
+                }
 
             }
         });
@@ -115,8 +132,6 @@ public class Window {
 
 
             //Maximum Slider
-        JSlider maxSlider = new JSlider(0, 30, (int) main.player.maxMins);
-        JTextField maxText = new JTextField(String.valueOf(main.player.maxMins),5);
         maxSlider.setBounds(65, 100, 320, 60);
         maxText.setBounds(15, 110, 45, 25);
 
@@ -132,6 +147,10 @@ public class Window {
                 main.player.maxMins = s.getValue();
                 maxText.setText(String.valueOf(maxSlider.getValue()));
                 System.out.println("Maximum Minutes Updated: " + main.player.maxMins);
+
+                if(minSlider.getValue() > s.getValue()){
+                    minSlider.setValue(s.getValue());
+                }
 
             }
         });

@@ -1,5 +1,7 @@
 package net.tnn1nja.scint;
 
+import static net.tnn1nja.scint.Init.ioHand;
+
 public class Main {
 
     // Const/Var
@@ -9,12 +11,11 @@ public class Main {
 
     // Runs at Start Up
     public void onStart() {
-        /*
         if(!ioHand.isAppData()){
             ioHand.genAppData();
-        }*/
+        }
 
-        player.startSounds(5,10);
+        player.startSounds(5,10, window);
         window.launch(this);
     }
 
