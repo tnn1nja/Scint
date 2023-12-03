@@ -17,6 +17,8 @@ public class Main {
 
         player.startSounds(5,10, window);
         window.launch(this);
+        window.setDelayLabel(String.valueOf(player.delay/player.coeff));
+        window.setSoundsLoaded(ioHand.getSounds().size());
     }
 
     //Runs at Close

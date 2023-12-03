@@ -14,9 +14,10 @@ public class SoundPlayer {
     Random rand = new Random();
     Window window;
     boolean muted = false;
-    int coeff = 1000;//*60;
+    int coeff = 1000*60;
     long minMins;
     long maxMins;
+    long delay;
 
 
     //Start
@@ -32,14 +33,13 @@ public class SoundPlayer {
     private void newSoundDelay(){
         Thread timer = new Thread(() -> {
             try{
-                long delay;
                 if(maxMins == minMins) {
                     delay = minMins*coeff;
                 }else {
                     delay = rand.nextLong((maxMins - minMins) * coeff) + minMins * coeff;
                 }
                 window.setDelayLabel((String.valueOf(delay/coeff)));
-                System.out.println("Next delay: " + delay/1000 + " minutes. (" + minMins + "-" + maxMins + ")");
+                System.out.println("Next delay: " + delay/coeff + " minutes. (" + minMins + "-" + maxMins + ")");
                 Thread.sleep(delay);
                 if(!muted) {
                     playSound();
@@ -58,6 +58,7 @@ public class SoundPlayer {
     // Plays a Sound
     private void playSound() {
         ArrayList<String> sounds = ioHand.getSounds();
+        window.setSoundsLoaded(sounds.size());
         String chosen = sounds.get(rand.nextInt(sounds.size()));
         FileInputStream soundPath = ioHand.getSound(chosen);
 

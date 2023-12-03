@@ -14,7 +14,9 @@ public class Window {
 
     public JLabel delayLabel = new JLabel();
     public JLabel lastLabel = new JLabel();
+    public JLabel soundsLoaded = new JLabel();
 
+    //Setters
     public void setDelayLabel(String label){
         delayLabel.setText("Current Delay: " + label + " minutes.");
     }
@@ -23,12 +25,17 @@ public class Window {
         lastLabel.setText("Last Played: " + label);
     }
 
+    public void setSoundsLoaded(int value){
+        soundsLoaded.setText("MP3s Loaded: " + String.valueOf(value));
+    }
+
+
     //Create GUI
     public void launch(Main main) {
 
         //Base Settings
         JFrame frame = new JFrame("Scint - DND Noises.");
-        frame.setSize(410, 265);
+        frame.setSize(410, 254);
         frame.setResizable(false);
 
         //On Close Operation
@@ -43,10 +50,17 @@ public class Window {
         });
 
         //Labels
+        Font smallFont = new Font("Dialog", Font.ITALIC, 10);
         setDelayLabel("-");
-        delayLabel.setBounds(15, 200, 185, 20);
-        setLastLabel("...");
-        lastLabel.setBounds(223, 200, 160, 20);
+        delayLabel.setBounds(15, 191, 185, 20);
+        delayLabel.setFont(smallFont);
+        setLastLabel("ejoeigeitoteitoeteieogieogiege");
+        lastLabel.setBounds(145, 191, 145, 20);
+        lastLabel.setFont(smallFont);
+        setSoundsLoaded(0);
+        soundsLoaded.setBounds(300, 191, 145, 20);
+        soundsLoaded.setFont(smallFont);
+
         JLabel minLabel = new JLabel("Minimum Delay (Mins)");
         minLabel.setBounds(10, 5, 135, 25);
         JLabel maxLabel = new JLabel("Maximum Delay (Mins)");
@@ -54,16 +68,16 @@ public class Window {
 
 
         //Buttons
-        JToggleButton muteButton = new JToggleButton("Mute", false);
-        muteButton.setBounds(275, 165, 100, 25);
+        JToggleButton muteButton = new JToggleButton("\uD83D\uDD0A", false);
+        muteButton.setBounds (330, 165, 50, 25);
         muteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main.player.toggleMute();
-                if(muteButton.getLabel().equalsIgnoreCase("Muted")) {
-                    muteButton.setLabel("Mute");
+                if(muteButton.getLabel().equalsIgnoreCase("\uD83D\uDD07")) {
+                    muteButton.setLabel("\uD83D\uDD0A");
                 }else{
-                    muteButton.setLabel("Muted");
+                    muteButton.setLabel("\uD83D\uDD07");
                 }
             }
         });
@@ -79,6 +93,15 @@ public class Window {
                 } catch (IOException ex) {
                     System.out.println("AppData Folder Not Found.");
                 }
+            }
+        });
+
+        JButton regenButton = new JButton("⟳");
+        regenButton.setBounds (160, 165, 50, 25);
+        regenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Init.ioHand.genAppData();
             }
         });
 
@@ -103,14 +126,14 @@ public class Window {
             @Override
             public void stateChanged(ChangeEvent e) {
                 JSlider s = (JSlider) e.getSource();
-                main.player.minMins = s.getValue();
                 minText.setText(String.valueOf(minSlider.getValue()));
-                System.out.println("Minimum Minutes Updated: " + main.player.minMins);
-
                 if(maxSlider.getValue() < s.getValue()){
                     maxSlider.setValue(s.getValue());
                 }
-
+                if(!s.getValueIsAdjusting()){
+                    main.player.minMins = s.getValue();
+                    System.out.println("Minimum Minutes Updated: " + main.player.minMins);
+                }
             }
         });
 
@@ -144,12 +167,13 @@ public class Window {
             @Override
             public void stateChanged(ChangeEvent e) {
                 JSlider s = (JSlider) e.getSource();
-                main.player.maxMins = s.getValue();
-                maxText.setText(String.valueOf(maxSlider.getValue()));
-                System.out.println("Maximum Minutes Updated: " + main.player.maxMins);
-
+                maxText.setText(String.valueOf(s.getValue()));
                 if(minSlider.getValue() > s.getValue()){
                     minSlider.setValue(s.getValue());
+                }
+                if(!s.getValueIsAdjusting()) {
+                    main.player.maxMins = s.getValue();
+                    System.out.println("Maximum Minutes Updated: " + main.player.maxMins);
                 }
 
             }
@@ -187,6 +211,8 @@ public class Window {
         panel.add(maxLabel);
         panel.add(minLabel);
         panel.add(mp3Button);
+        panel.add(regenButton);
+        panel.add(soundsLoaded);
 
         //Enable
         frame.add(panel);
