@@ -35,6 +35,8 @@ public class Window {
         JFrame frame = new JFrame("Scint - DND Noises.");
         frame.setSize(410, 254);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null); //Create in center of screen
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
 
         //On Close Operation
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -67,6 +69,7 @@ public class Window {
 
         //Buttons
         JToggleButton muteButton = new JToggleButton("\uD83D\uDD0A", false);
+        muteButton.setToolTipText("Toggle Mute.");
         muteButton.setBounds (330, 165, 50, 25);
         muteButton.addActionListener(new ActionListener() {
             @Override
@@ -82,6 +85,7 @@ public class Window {
 
         JButton mp3Button = new JButton("Open MP3 Folder");
         mp3Button.setBounds (15, 165, 130, 25);
+        mp3Button.setToolTipText("Open AppData MP3 Folder.");
         mp3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,6 +99,7 @@ public class Window {
         });
 
         JButton regenButton = new JButton("⟳");
+        regenButton.setToolTipText("Regenerate Files in AppData Folder.");
         regenButton.setBounds (150, 165, 50, 25);
         regenButton.addActionListener(new ActionListener() {
             @Override
@@ -104,6 +109,7 @@ public class Window {
         });
 
         JButton timerButton = new JButton("⊘");
+        timerButton.setToolTipText("Reset the Delay Before Next Sound.");
         timerButton.setBounds (275, 165, 50, 25);
         timerButton.addActionListener(new ActionListener() {
             @Override
@@ -144,6 +150,7 @@ public class Window {
             }
         });
 
+        minText.setHorizontalAlignment(SwingConstants.CENTER);
         minText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,6 +193,7 @@ public class Window {
             }
         });
 
+        maxText.setHorizontalAlignment(SwingConstants.CENTER);
         maxText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

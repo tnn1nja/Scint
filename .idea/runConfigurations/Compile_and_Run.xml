@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Package and Run" type="JarApplication">
+  <configuration default="false" name="Compile and Run" type="JarApplication">
     <option name="JAR_PATH" value="$PROJECT_DIR$/target/Scint-jar-with-dependencies.jar" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">

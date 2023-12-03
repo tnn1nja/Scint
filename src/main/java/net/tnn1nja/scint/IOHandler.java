@@ -23,6 +23,12 @@ public class IOHandler {
         LineNumberReader lnr = new LineNumberReader(isr);
 
         try {
+            InputStream icoIn = getClass().getClassLoader().getResourceAsStream("icon.ico");
+            FileOutputStream icoOut = new FileOutputStream(System.getenv("APPDATA") + "/.scint/icon.ico");
+            icoIn.transferTo(icoOut);
+            icoIn.close();
+            icoOut.close();
+
             boolean reading = true;
             while (reading) {
                 String filename = lnr.readLine();
@@ -67,7 +73,6 @@ public class IOHandler {
         }catch(IOException e){
             return null;
         }
-
     }
 
 }
