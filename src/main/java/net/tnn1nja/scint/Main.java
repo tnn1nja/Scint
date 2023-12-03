@@ -16,6 +16,7 @@ public class Main {
         }
 
         player.startSounds(5,10, window);
+
         window.launch(this);
         window.setDelayLabel(String.valueOf(player.delay/player.coeff));
         window.setSoundsLoaded(ioHand.getSounds().size());
@@ -24,7 +25,6 @@ public class Main {
     //Runs at Close
     public void onClose(){
         System.out.println("Program Closing...");
-
         System.exit(0);
     }
 

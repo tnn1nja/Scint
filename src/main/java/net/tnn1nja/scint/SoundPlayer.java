@@ -30,8 +30,9 @@ public class SoundPlayer {
     }
 
     //Interrupt Thread
-    public void interruptTimer(){
+    public void interruptTimer(Window win){
         timer.interrupt();
+        win.setSoundsLoaded(ioHand.getSounds().size());
     }
 
 

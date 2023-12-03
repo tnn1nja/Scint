@@ -108,7 +108,7 @@ public class Window {
         timerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                main.player.interruptTimer();
+                main.player.interruptTimer(main.window);
             }
         });
 
