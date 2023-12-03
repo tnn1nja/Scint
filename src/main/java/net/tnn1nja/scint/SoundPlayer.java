@@ -12,6 +12,7 @@ public class SoundPlayer {
 
     //Consts + Vars
     Random rand = new Random();
+    Thread timer;
     Window window;
     boolean muted = false;
     int coeff = 1000*60;
@@ -28,10 +29,15 @@ public class SoundPlayer {
         newSoundDelay();
     }
 
+    //Interrupt Thread
+    public void interruptTimer(){
+        timer.interrupt();
+    }
+
 
     // Generates New Pause Thread
     private void newSoundDelay(){
-        Thread timer = new Thread(() -> {
+        timer = new Thread(() -> {
             try{
                 if(maxMins == minMins) {
                     delay = minMins*coeff;
@@ -47,7 +53,7 @@ public class SoundPlayer {
                 newSoundDelay();
 
             } catch (Exception e){
-                System.out.println("Failed to Start Delay.");
+                System.out.println("Failed to Start Delay/Delay was cancelled.");
                 newSoundDelay();
             }
         });

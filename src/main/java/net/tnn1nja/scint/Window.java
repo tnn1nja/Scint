@@ -54,7 +54,7 @@ public class Window {
         setDelayLabel("-");
         delayLabel.setBounds(15, 191, 185, 20);
         delayLabel.setFont(smallFont);
-        setLastLabel("ejoeigeitoteitoeteieogieogiege");
+        setLastLabel("...");
         lastLabel.setBounds(145, 191, 145, 20);
         lastLabel.setFont(smallFont);
         setSoundsLoaded(0);
@@ -83,7 +83,7 @@ public class Window {
         });
 
         JButton mp3Button = new JButton("Open MP3 Folder");
-        mp3Button.setBounds(15, 165, 140, 25);
+        mp3Button.setBounds (15, 165, 130, 25);
         mp3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,11 +97,20 @@ public class Window {
         });
 
         JButton regenButton = new JButton("⟳");
-        regenButton.setBounds (160, 165, 50, 25);
+        regenButton.setBounds (150, 165, 50, 25);
         regenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Init.ioHand.genAppData();
+            }
+        });
+
+        JButton timerButton = new JButton("⊘");
+        timerButton.setBounds (275, 165, 50, 25);
+        timerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.player.interruptTimer();
             }
         });
 
@@ -213,6 +222,7 @@ public class Window {
         panel.add(mp3Button);
         panel.add(regenButton);
         panel.add(soundsLoaded);
+        panel.add(timerButton);
 
         //Enable
         frame.add(panel);
