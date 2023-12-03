@@ -27,3 +27,4 @@ ramsayViolin.mp3
 vineBoom.mp3
 vineBoomSpam.mp3
 wilhelmScream.mp3
+amongUsSus.mp3

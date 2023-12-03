@@ -20,11 +20,9 @@ public class Window {
     public void setDelayLabel(String label){
         delayLabel.setText("Current Delay: " + label + " minutes.");
     }
-
     public void setLastLabel(String label){
         lastLabel.setText("Last Played: " + label);
     }
-
     public void setSoundsLoaded(int value){
         soundsLoaded.setText("MP3s Loaded: " + String.valueOf(value));
     }
