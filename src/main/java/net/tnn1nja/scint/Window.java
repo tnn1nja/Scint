@@ -36,7 +36,8 @@ public class Window {
         frame.setSize(410, 244);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); //Create in center of screen
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().
+                getResource("/icons/icon.png")).getScaledInstance(32, 32, Image.SCALE_SMOOTH));
 
         //On Close Operation
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -68,21 +69,6 @@ public class Window {
 
 
         //Buttons
-        JToggleButton muteButton = new JToggleButton("\uD83D\uDD0A", false);
-        muteButton.setToolTipText("Toggle Mute.");
-        muteButton.setBounds (330, 155, 50, 25);
-        muteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                main.player.toggleMute();
-                if(muteButton.getLabel().equalsIgnoreCase("\uD83D\uDD07")) {
-                    muteButton.setLabel("\uD83D\uDD0A");
-                }else{
-                    muteButton.setLabel("\uD83D\uDD07");
-                }
-            }
-        });
-
         JButton mp3Button = new JButton("Open MP3 Folder");
         mp3Button.setBounds (15, 155, 130, 25);
         mp3Button.setToolTipText("Open AppData MP3 Folder.");
@@ -98,7 +84,9 @@ public class Window {
             }
         });
 
-        JButton regenButton = new JButton("⟳");
+        Image regenImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/reloadIcon.png"));
+        ImageIcon regenIcon = new ImageIcon(regenImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
+        JButton regenButton = new JButton(regenIcon);
         regenButton.setToolTipText("Regenerate Files in AppData Folder.");
         regenButton.setBounds (150, 155, 50, 25);
         regenButton.addActionListener(new ActionListener() {
@@ -108,13 +96,34 @@ public class Window {
             }
         });
 
-        JButton timerButton = new JButton("⊘");
+        Image timerImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/stopDelayIcon.png"));
+        ImageIcon timerIcon = new ImageIcon(timerImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
+        JButton timerButton = new JButton(timerIcon);
         timerButton.setToolTipText("Reset the Delay Before Next Sound.");
         timerButton.setBounds (275, 155, 50, 25);
         timerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main.player.interruptTimer(main.window);
+            }
+        });
+
+        Image unmutedImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/unmuted.png"));
+        ImageIcon unmutedIcon = new ImageIcon(unmutedImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
+        Image mutedImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/muted.png"));
+        ImageIcon mutedIcon = new ImageIcon(mutedImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
+        JToggleButton muteButton = new JToggleButton(unmutedIcon, false);
+        muteButton.setToolTipText("Toggle Mute.");
+        muteButton.setBounds (330, 155, 50, 25);
+        muteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.player.toggleMute();
+                if(muteButton.getIcon().equals(mutedIcon)){
+                    muteButton.setIcon(unmutedIcon);
+                }else{
+                    muteButton.setIcon(mutedIcon);
+                }
             }
         });
 
@@ -234,4 +243,5 @@ public class Window {
         frame.add(panel);
         frame.setVisible(true);
     }
+
 }

@@ -1,6 +1,5 @@
 package net.tnn1nja.scint;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class IOHandler {
         LineNumberReader lnr = new LineNumberReader(isr);
 
         try {
-            InputStream icoIn = getClass().getClassLoader().getResourceAsStream("icon.ico");
+            InputStream icoIn = getClass().getClassLoader().getResourceAsStream("icons/icon.ico");
             FileOutputStream icoOut = new FileOutputStream(System.getenv("APPDATA") + "/.scint/icon.ico");
             icoIn.transferTo(icoOut);
             icoIn.close();
