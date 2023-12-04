@@ -32,7 +32,7 @@ public class Window {
     public void launch(Main main) {
 
         //Base Settings
-        JFrame frame = new JFrame("Scint - DND Noises.");
+        JFrame frame = new JFrame("Scint - Random MP3 Player");
         frame.setSize(410, 244);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); //Create in center of screen
