@@ -33,7 +33,7 @@ public class Window {
 
         //Base Settings
         JFrame frame = new JFrame("Scint - DND Noises.");
-        frame.setSize(410, 254);
+        frame.setSize(410, 244);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); //Create in center of screen
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon.png")));
@@ -52,13 +52,13 @@ public class Window {
         //Labels
         Font smallFont = new Font("Dialog", Font.ITALIC, 10);
         setDelayLabel("-");
-        delayLabel.setBounds(15, 191, 185, 20);
+        delayLabel.setBounds(15, 181, 185, 20);
         delayLabel.setFont(smallFont);
         setLastLabel("...");
-        lastLabel.setBounds(145, 191, 145, 20);
+        lastLabel.setBounds(145, 181, 145, 20);
         lastLabel.setFont(smallFont);
         setSoundsLoaded(0);
-        soundsLoaded.setBounds(300, 191, 145, 20);
+        soundsLoaded.setBounds(300, 181, 145, 20);
         soundsLoaded.setFont(smallFont);
 
         JLabel minLabel = new JLabel("Minimum Delay (Mins)");
@@ -70,7 +70,7 @@ public class Window {
         //Buttons
         JToggleButton muteButton = new JToggleButton("\uD83D\uDD0A", false);
         muteButton.setToolTipText("Toggle Mute.");
-        muteButton.setBounds (330, 165, 50, 25);
+        muteButton.setBounds (330, 155, 50, 25);
         muteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,7 +84,7 @@ public class Window {
         });
 
         JButton mp3Button = new JButton("Open MP3 Folder");
-        mp3Button.setBounds (15, 165, 130, 25);
+        mp3Button.setBounds (15, 155, 130, 25);
         mp3Button.setToolTipText("Open AppData MP3 Folder.");
         mp3Button.addActionListener(new ActionListener() {
             @Override
@@ -100,7 +100,7 @@ public class Window {
 
         JButton regenButton = new JButton("⟳");
         regenButton.setToolTipText("Regenerate Files in AppData Folder.");
-        regenButton.setBounds (150, 165, 50, 25);
+        regenButton.setBounds (150, 155, 50, 25);
         regenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class Window {
 
         JButton timerButton = new JButton("⊘");
         timerButton.setToolTipText("Reset the Delay Before Next Sound.");
-        timerButton.setBounds (275, 165, 50, 25);
+        timerButton.setBounds (275, 155, 50, 25);
         timerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,7 +133,7 @@ public class Window {
         minSlider.setOrientation(JSlider.HORIZONTAL);
         minSlider.setMinorTickSpacing(1);
         minSlider.setMajorTickSpacing(5);
-        minSlider.setPaintTicks(true);
+        minSlider.setPaintTicks(false);
         minSlider.setPaintLabels(false);
         minSlider.addChangeListener(new ChangeListener() {
             @Override
@@ -175,7 +175,7 @@ public class Window {
         maxSlider.setOrientation(JSlider.HORIZONTAL);
         maxSlider.setMinorTickSpacing(1);
         maxSlider.setMajorTickSpacing(5);
-        maxSlider.setPaintTicks(true);
+        maxSlider.setPaintTicks(false);
         maxSlider.setPaintLabels(false);
         maxSlider.addChangeListener(new ChangeListener() {
             @Override

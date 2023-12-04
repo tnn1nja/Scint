@@ -1,5 +1,7 @@
 package net.tnn1nja.scint;
 
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+
 import static net.tnn1nja.scint.Init.ioHand;
 
 public class Main {
@@ -17,6 +19,7 @@ public class Main {
 
         player.startSounds(5,10, window);
 
+        FlatMacDarkLaf.setup();
         window.launch(this);
         window.setDelayLabel(String.valueOf(player.delay/player.coeff));
         window.setSoundsLoaded(ioHand.getSounds().size());

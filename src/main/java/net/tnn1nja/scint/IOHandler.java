@@ -1,5 +1,6 @@
 package net.tnn1nja.scint;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 
