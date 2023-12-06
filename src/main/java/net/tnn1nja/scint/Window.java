@@ -50,22 +50,37 @@ public class Window {
 
         });
 
+        //Create Panel
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(385, 223));
+        panel.setLayout(null);
+
+
         //Labels
         Font smallFont = new Font("Dialog", Font.ITALIC, 10);
+
         setDelayLabel("-");
         delayLabel.setBounds(15, 181, 185, 20);
         delayLabel.setFont(smallFont);
+        panel.add(delayLabel);
+
         setLastLabel("...");
         lastLabel.setBounds(145, 181, 145, 20);
         lastLabel.setFont(smallFont);
+        panel.add(lastLabel);
+
         setSoundsLoaded(0);
         soundsLoaded.setBounds(300, 181, 145, 20);
         soundsLoaded.setFont(smallFont);
+        panel.add(soundsLoaded);
 
         JLabel minLabel = new JLabel("Minimum Delay (Mins)");
         minLabel.setBounds(10, 5, 135, 25);
+        panel.add(minLabel);
+
         JLabel maxLabel = new JLabel("Maximum Delay (Mins)");
         maxLabel.setBounds(10, 75, 140, 30);
+        panel.add(maxLabel);
 
 
         //Buttons
@@ -83,6 +98,7 @@ public class Window {
                 }
             }
         });
+        panel.add(mp3Button);
 
         Image regenImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/reloadIcon.png"));
         ImageIcon regenIcon = new ImageIcon(regenImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
@@ -95,6 +111,7 @@ public class Window {
                 Init.ioHand.genAppData();
             }
         });
+        panel.add(regenButton);
 
         Image timerImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/stopDelayIcon.png"));
         ImageIcon timerIcon = new ImageIcon(timerImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
@@ -107,6 +124,7 @@ public class Window {
                 main.player.interruptTimer(main.window);
             }
         });
+        panel.add(timerButton);
 
         Image unmutedImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/unmuted.png"));
         ImageIcon unmutedIcon = new ImageIcon(unmutedImage.getScaledInstance(17, 17, Image.SCALE_SMOOTH));
@@ -126,6 +144,7 @@ public class Window {
                 }
             }
         });
+        panel.add(muteButton);
 
 
 
@@ -175,6 +194,8 @@ public class Window {
                 }
             }
         });
+        panel.add(minSlider);
+        panel.add(minText);
 
 
             //Maximum Slider
@@ -218,26 +239,9 @@ public class Window {
                 }
             }
         });
-
-
-
-        //Create Panel
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(385, 223));
-        panel.setLayout(null);
-        panel.add(delayLabel);
-        panel.add(lastLabel);
-        panel.add(minSlider);
-        panel.add(minText);
         panel.add(maxSlider);
         panel.add(maxText);
-        panel.add(muteButton);
-        panel.add(maxLabel);
-        panel.add(minLabel);
-        panel.add(mp3Button);
-        panel.add(regenButton);
-        panel.add(soundsLoaded);
-        panel.add(timerButton);
+
 
         //Enable
         frame.add(panel);
